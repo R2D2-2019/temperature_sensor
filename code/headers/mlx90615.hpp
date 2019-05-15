@@ -1,6 +1,8 @@
 #include <cstdint>
 #include <i2c_bus.hpp>
 
+#pragma once
+
 namespace r2d2::temperature_sensor {
     class mlx90615 {
         enum mlx_registers : uint8_t {
