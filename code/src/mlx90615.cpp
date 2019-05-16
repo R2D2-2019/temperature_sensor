@@ -6,8 +6,8 @@ namespace r2d2::temperature_sensor {
         uint16_t data;
         i2c_bus.read(MLX90615_SLAVE_ADDRESS, raw_data,
                      3); // TODO: repeated start i2c implementation
-        data = raw_data[1];
-        data <<= 8;
+        data = raw_data[1];         // Read high byte first
+        data <<= 8;                 // read low byte
         data |= raw_data[0];
         // Do nothing with raw_data[2]
         // discard PEC
