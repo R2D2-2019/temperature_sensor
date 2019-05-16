@@ -4,8 +4,10 @@ namespace r2d2::temperature_sensor {
     uint16_t mlx90615::read_register(const uint8_t reg) {
         uint8_t raw_data[3];
         uint16_t data = 0;
-        i2c_bus.read(MLX90615_SLAVE_ADDRESS, raw_data,
-                     3); // TODO: repeated start i2c implementation
+        
+        hwlib::cout << "Test\n";
+        i2c_bus.read(MLX90615_SLAVE_ADDRESS, raw_data, 3, reg, 1); 
+        hwlib::cout << "End test\n";
         data = (data | raw_data[1]) << 8 | raw_data[0];
         // Do nothing with raw_data[2]
         // discard PEC
