@@ -5,7 +5,7 @@
 
 namespace r2d2::temperature_sensor {
     class mlx90615 {
-        enum mlx_registers : uint8_t {
+        enum : uint8_t {
             EMISSIVITY              = 0x13,
             AMBIENT_TEMPERATURE     = 0x26,
             OBJECT_TEMPERATURE      = 0x27,
