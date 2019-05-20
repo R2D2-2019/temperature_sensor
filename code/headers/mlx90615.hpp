@@ -6,24 +6,22 @@
 namespace r2d2::temperature_sensor {
     class mlx90615 {
         enum : uint8_t {
-            EMISSIVITY              = 0x13,
-            AMBIENT_TEMPERATURE     = 0x26,
-            OBJECT_TEMPERATURE      = 0x27,
-            MLX90615_SLAVE_ADDRESS  = 0x5B
+            AMBIENT_TEMPERATURE = 0x26,
+            OBJECT_TEMPERATURE = 0x27,
+            MLX90615_SLAVE_ADDRESS = 0x5B
         };
 
-        r2d2::i2c::i2c_bus_c i2c_bus;
+        r2d2::i2c::i2c_bus_c &i2c_bus;
 
         uint16_t read_register(const uint8_t reg);
 
     public:
-        mlx90615();
+        mlx90615(r2d2::i2c::i2c_bus_c &i2c_bus);
         /**
-         * Gets the temperature of the chip.
-         * AKA 'ambient' temperature.
+         * Gets the ambient temperature of the chip.
          * @return float
          * */
-        float get_chip_temperature();
+        float get_ambient_temperature();
 
         /**
          * Gets the temperature of the object the sensor is pointed at.
