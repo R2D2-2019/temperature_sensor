@@ -15,21 +15,24 @@ namespace r2d2::temperature_sensor {
         }
 
         void process() override {
+            bool has_send = false;
             while (comm.has_data()) {
                 auto frame = comm.get_data();
-                // This module doesn't handle requests
-
-                if (!frame.request) {
+                
+                if (!frame.request && !has_send) {
                     continue;
                 }
+
                 frame_temperature_s temperatures;
 
                 temperatures.ambient_temperature =
                     mlx.get_ambient_temperature() * 10;
                 temperatures.object_temperature =
                     mlx.get_object_temperature() * 10;
-
+                temperatures.id = mlx.get_id();
+                
                 comm.send(temperatures);
+                has_send = true;
             }
         }
     };
