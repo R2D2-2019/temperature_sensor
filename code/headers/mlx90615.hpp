@@ -8,10 +8,13 @@ namespace r2d2::temperature_sensor {
         enum : uint8_t {
             AMBIENT_TEMPERATURE = 0x26,
             OBJECT_TEMPERATURE = 0x27,
-            MLX90615_SLAVE_ADDRESS = 0x5B
+            MLX90615_SLAVE_ADDRESS = 0x5B,
+            MLX90615_ID_LOW = 0x1E,
+            MLX90615_ID_HIGH = 0x1F
         };
 
         r2d2::i2c::i2c_bus_c &i2c_bus;
+        uint32_t id;
 
         uint16_t read_register(const uint8_t reg);
 
@@ -29,5 +32,10 @@ namespace r2d2::temperature_sensor {
          * @return float
          * */
         float get_object_temperature();
+
+        /**
+         * Gets the ID of the chip.
+         * */
+        uint32_t get_id();
     };
 } // namespace r2d2::temperature_sensor
