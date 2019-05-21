@@ -18,7 +18,6 @@ namespace r2d2::temperature_sensor {
             bool has_send = false;
             while (comm.has_data()) {
                 auto frame = comm.get_data();
-                hwlib::cout << "processing\n";
                 if (!frame.request && !has_send) {
                     continue;
                 }
