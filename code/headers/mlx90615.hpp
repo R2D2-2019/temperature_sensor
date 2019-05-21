@@ -17,12 +17,12 @@ namespace r2d2::temperature_sensor {
          * Data sheet refers to multiplying the RAW IR data with a scale of
          * 0.02f
          * */
-        constexpr static float SCALE = 2;
+        constexpr static int SCALE = 2;
         /**
          * To convert a read object temperature into degrees Celsius the
          * equation is: temperature *C = RAW IR DATA * SCALE - KELVIN
          * */
-        constexpr static float KELVIN = 27315;
+        constexpr static int KELVIN = 27315;
         /**
          * I2C bus from R2D2
          * */
