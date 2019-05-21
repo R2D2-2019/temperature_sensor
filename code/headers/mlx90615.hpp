@@ -17,12 +17,12 @@ namespace r2d2::temperature_sensor {
          * Data sheet refers to multiplying the RAW IR data with a scale of
          * 0.02f
          * */
-        constexpr static float SCALE = 0.02f;
+        constexpr static float SCALE = 2;
         /**
          * To convert a read object temperature into degrees Celsius the
          * equation is: temperature *C = RAW IR DATA * SCALE - KELVIN
          * */
-        constexpr static float KELVIN = 273.15f;
+        constexpr static float KELVIN = 27315;
         /**
          * I2C bus from R2D2
          * */
@@ -45,16 +45,18 @@ namespace r2d2::temperature_sensor {
         mlx90615(r2d2::i2c::i2c_bus_c &i2c_bus);
         /**
          * Gets the ambient temperature of the chip.
-         * @return float
+         * @return int the temperature in celsius degrees with a factor of 100.
+         * To read the correct temperature, devide it by 100.
          * */
-        float get_ambient_temperature();
+        int get_ambient_temperature();
 
         /**
          * Gets the temperature of the object the sensor is pointed at.
          * AKA 'object' temperature.
-         * @return float
+         * @return int the temperature in celsius degrees with a factor of 100.
+         * To read the correct temperature, devide it by 100.
          * */
-        float get_object_temperature();
+        int get_object_temperature();
 
         /**
          * Gets the ID of the chip.
