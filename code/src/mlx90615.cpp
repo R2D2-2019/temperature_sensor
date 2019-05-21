@@ -13,8 +13,8 @@ namespace r2d2::temperature_sensor {
     }
 
     mlx90615::mlx90615(r2d2::i2c::i2c_bus_c &i2c_bus) : i2c_bus(i2c_bus) {
-        id = read_register(MLX90615_ID_LOW);
-        id |= static_cast<uint32_t>(read_register(MLX90615_ID_HIGH) << 16);
+        id = static_cast<uint32_t>(read_register(MLX90615_ID_LOW) |
+                                   read_register(MLX90615_ID_HIGH) << 16);
     }
 
     float mlx90615::get_ambient_temperature() {
