@@ -2,7 +2,6 @@
 
 namespace r2d2::temperature_sensor {
     uint16_t mlx90615::read_register(const uint8_t reg) {
-        hwlib::wait_us(100); // Wait for chip to respond
         uint8_t raw_data[3] = {0, 0, 0};
         uint16_t data = 0;
         i2c_bus.read(MLX90615_SLAVE_ADDRESS, raw_data, 3, reg, 1);
