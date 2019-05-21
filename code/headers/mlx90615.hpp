@@ -14,7 +14,7 @@ namespace r2d2::temperature_sensor {
             MLX90615_ID_HIGH = 0x1F
         };
         /**
-         * Data sheet refers to multiplying the RAW IR data with a scale of 2.02f
+         * Data sheet refers to multiplying the RAW IR data with a scale of 0.02f
          * */
         constexpr static float SCALE = 0.02f;
         /**
