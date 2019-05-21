@@ -14,12 +14,13 @@ namespace r2d2::temperature_sensor {
             MLX90615_ID_HIGH = 0x1F
         };
         /**
-         * Data sheet refers to multiplying the RAW IR data with a scale of 0.02f
+         * Data sheet refers to multiplying the RAW IR data with a scale of
+         * 0.02f
          * */
         constexpr static float SCALE = 0.02f;
         /**
-         * To convert a read object temperature into degrees Celsius the equation is:
-         * temperature *C = RAW IR DATA * SCALE - KELVIN
+         * To convert a read object temperature into degrees Celsius the
+         * equation is: temperature *C = RAW IR DATA * SCALE - KELVIN
          * */
         constexpr static float KELVIN = 273.15f;
         /**
@@ -34,9 +35,9 @@ namespace r2d2::temperature_sensor {
         uint32_t id;
         /**
          * Reads a register from the chip
-         * 
-         * @param uint8_t
-         * @return uint16_t
+         *
+         * @param uint8_t the internal register that needs to be read
+         * @return uint16_t the value that the memory returns
          * */
         uint16_t read_register(const uint8_t reg);
 

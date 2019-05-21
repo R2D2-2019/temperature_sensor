@@ -24,8 +24,7 @@ namespace r2d2::temperature_sensor {
                 frame_temperature_s temperatures{
                     mlx.get_id(),
                     static_cast<int16_t>(mlx.get_ambient_temperature() * 10),
-                    static_cast<int16_t>(mlx.get_object_temperature() * 10)
-                };
+                    static_cast<int16_t>(mlx.get_object_temperature() * 10)};
                 comm.send(temperatures);
                 has_send = true;
             }

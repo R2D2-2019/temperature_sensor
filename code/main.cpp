@@ -10,7 +10,7 @@ int main() {
                                  50'000);
     r2d2::temperature_sensor::mlx90615 mlx90615(i2c_bus);
     r2d2::temperature_sensor::module_c module(comm, mlx90615);
-    
+
     while (true) {
         module.process();
     }

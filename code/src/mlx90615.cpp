@@ -18,14 +18,14 @@ namespace r2d2::temperature_sensor {
     }
 
     float mlx90615::get_ambient_temperature() {
-        // To convert a read object temperature into degrees Celsius the equation is:
-        // temperature *C = RAW IR DATA * SCALE - KELVIN
+        // To convert a read object temperature into degrees Celsius the
+        // equation is: temperature *C = RAW IR DATA * SCALE - KELVIN
         return read_register(AMBIENT_TEMPERATURE) * SCALE - KELVIN;
     }
 
     float mlx90615::get_object_temperature() {
-        // To convert a read object temperature into degrees Celsius the equation is:
-        // temperature *C = RAW IR DATA * SCALE - KELVIN
+        // To convert a read object temperature into degrees Celsius the
+        // equation is: temperature *C = RAW IR DATA * SCALE - KELVIN
         return read_register(OBJECT_TEMPERATURE) * SCALE - KELVIN;
     }
 
