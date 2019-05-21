@@ -12,11 +12,15 @@ int main() {
     r2d2::temperature_sensor::module_c module(comm, mlx90615);
     
     while (true) {
-        //module.process();
-        hwlib::cout << "Ambient temperature: "
-                    << static_cast<int>(mlx90615.get_ambient_temperature()) << " *C\t";
-        hwlib::cout << "Object temperature: "
+        module.process();
+        int temp = mlx90615.get_ambient_temperature();
+        int temp2 = mlx90615.get_object_temperature();
+        hwlib::cout << temp << ' ' << temp2 << hwlib::endl;
+        // DEMO CODE BELOW
+        /*hwlib::cout << "Ambient temperature: "
+                    << static_cast<int>(mlx90615.get_ambient_temperature()) << " *C\t";*/
+        /*hwlib::cout << "Object temperature: "
                     << static_cast<int>(mlx90615.get_object_temperature()) << " *C"
-                    << hwlib::endl;
+                    << hwlib::endl;*/
     }
 }

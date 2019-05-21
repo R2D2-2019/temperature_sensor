@@ -18,19 +18,15 @@ namespace r2d2::temperature_sensor {
             bool has_send = false;
             while (comm.has_data()) {
                 auto frame = comm.get_data();
-                
+                hwlib::cout << "processing\n";
                 if (!frame.request && !has_send) {
                     continue;
                 }
-
-                frame_temperature_s temperatures;
-
-                temperatures.ambient_temperature =
-                    mlx.get_ambient_temperature() * 10;
-                temperatures.object_temperature =
-                    mlx.get_object_temperature() * 10;
-                temperatures.id = mlx.get_id();
-                
+                frame_temperature_s temperatures{
+                    mlx.get_id(),
+                    static_cast<int16_t>(mlx.get_ambient_temperature() * 10),
+                    static_cast<int16_t>(mlx.get_object_temperature() * 10)
+                };
                 comm.send(temperatures);
                 has_send = true;
             }

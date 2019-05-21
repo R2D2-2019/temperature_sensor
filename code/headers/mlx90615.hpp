@@ -5,6 +5,7 @@
 
 namespace r2d2::temperature_sensor {
     class mlx90615 {
+        // MLX90615 registers
         enum : uint8_t {
             AMBIENT_TEMPERATURE = 0x26,
             OBJECT_TEMPERATURE = 0x27,
@@ -12,10 +13,31 @@ namespace r2d2::temperature_sensor {
             MLX90615_ID_LOW = 0x1E,
             MLX90615_ID_HIGH = 0x1F
         };
-
+        /**
+         * Data sheet refers to multiplying the RAW IR data with a scale of 2.02f
+         * */
+        constexpr static float SCALE = 0.02f;
+        /**
+         * To convert a read object temperature into degrees Celsius the equation is:
+         * temperature *C = RAW IR DATA * SCALE - KELVIN
+         * */
+        constexpr static float KELVIN = 273.15f;
+        /**
+         * I2C bus from R2D2
+         * */
         r2d2::i2c::i2c_bus_c &i2c_bus;
-        uint32_t id;
 
+        /**
+         * Unique ID of the chip
+         * Assigned in constructor
+         * */
+        uint32_t id;
+        /**
+         * Reads a register from the chip
+         * 
+         * @param uint8_t
+         * @return uint16_t
+         * */
         uint16_t read_register(const uint8_t reg);
 
     public:
