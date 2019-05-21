@@ -13,6 +13,5 @@ int main() {
 
     while (true) {
         module.process();
-        hwlib::cout << (int)(mlx90615.get_ambient_temperature() / 100) << hwlib::endl;
     }
 }
