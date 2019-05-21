@@ -10,7 +10,13 @@ int main() {
                                  50'000);
     r2d2::temperature_sensor::mlx90615 mlx90615(i2c_bus);
     r2d2::temperature_sensor::module_c module(comm, mlx90615);
+    
     while (true) {
-        module.process();
+        //module.process();
+        hwlib::cout << "Ambient temperature: "
+                    << static_cast<int>(mlx90615.get_ambient_temperature()) << " *C\t";
+        hwlib::cout << "Object temperature: "
+                    << static_cast<int>(mlx90615.get_object_temperature()) << " *C"
+                    << hwlib::endl;
     }
 }
